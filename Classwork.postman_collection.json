@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "85e54432-3969-4ee6-bd5f-5cef1d20bd37",
+		"name": "Classwork",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40331601"
+	},
+	"item": [
+		{
+			"name": "new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\" , function () {\r",
+							"    pm.response.to.have.status(200)\r",
+							"} );\r",
+							"pm.test(\"Status code is 200\" , function () {\r",
+							"    pm.response.to.have.status(290)\r",
+							"} );\r",
+							"pm.test(\"Body Contains 'page'\" , function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"page\");//check if the body contains page\r",
+							"} );\r",
+							"pm.test(\"Body contains'total'\" , function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"total\");//check if the body contains total\r",
+							"} );\r",
+							"pm.test(\"Body contains'per_page'\" , function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"per_page\");//check if the body contains per_page\r",
+							"} );\r",
+							"pm.test(\"Page is 2\", function () {\r",
+							"    var jsonData = pm.response.json();  // Parse the JSON response\r",
+							"    pm.expect(jsonData.page).to.eql(2);  // Check if 'page' is 2\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\" , function () {\r",
+							"    pm.response.to.have.status(201)\r",
+							"} );\r",
+							"pm.test(\"Body Contains 'name'\" , function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");//check if the body contains name\r",
+							"} );\r",
+							"pm.test(\"name is 'Nkem'\", function () {\r",
+							"    var jsonData = pm.response.json();  // Parse the JSON response\r",
+							"    pm.expect(jsonData.name).to.eql('Nkem');  // Check if 'name' is 'Jude'\r",
+							"});\r",
+							"pm.test(\"job is 'Tester\", function () {\r",
+							"    var jsonData = pm.response.json();  // Parse the JSON response\r",
+							"    pm.expect(jsonData.job).to.eql('Tester');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nkem\",\r\n    \"job\": \"Tester\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
